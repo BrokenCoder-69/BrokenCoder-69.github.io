@@ -1,0 +1,537 @@
+<!doctype html>
+<!--
+╔══════════════════════════════════════════════════════════════════════╗
+║                    AL RAFI — PORTFOLIO  (index.html)                 ║
+╠══════════════════════════════════════════════════════════════════════╣
+║  This file holds all the TEXT and STRUCTURE of the website.          ║
+║                                                                      ║
+║  📁 The 3 files work together:                                       ║
+║     index.html  →  what's on the page (text, links, images)          ║
+║     style.css   →  how it looks (colors, fonts, sizes, layout)       ║
+║     script.js   →  how it moves (animations, theme switcher, etc.)   ║
+║                                                                      ║
+║  🔎 HOW TO FIND THINGS                                               ║
+║     Search (Ctrl+F / Cmd+F) for these section names:                 ║
+║       SECTION 0 · PAGE SETUP      (title, fonts)                     ║
+║       SECTION 1 · NAVIGATION BAR  (top menu + theme button)          ║
+║       SECTION 2 · HERO            (big "AL RAFI" intro)              ║
+║       SECTION 3 · ABOUT           (gacha summon card + bio)          ║
+║       SECTION 4 · PROJECTS        (manga panels)                     ║
+║       SECTION 5 · SKILLS          (orbit)                            ║
+║       SECTION 6 · JOURNEY         (timeline with big year)           ║
+║       SECTION 6B · RESUME         (view / download your PDF)         ║
+║       SECTION 7 · CONTACT         (email + social links)             ║
+║       SECTION 8 · FOOTER                                             ║
+║                                                                      ║
+║  ✏️  Look for "✏️ EDIT" comments — those mark the spots you'll       ║
+║     most likely want to change.                                      ║
+║                                                                      ║
+║  ▶️  To view: just double-click index.html to open it in a browser.  ║
+║     Keep all 3 files in the SAME folder.                             ║
+╚══════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 0 · PAGE SETUP
+       Title in the browser tab, fonts, and links to the CSS/JS files.
+       ═══════════════════════════════════════════════════════════════ -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- ✏️ EDIT: the text shown on the browser tab -->
+  <title>Al Rafi — Software Engineer</title>
+
+  <!-- ✏️ EDIT: the short description Google / link previews show -->
+  <meta name="description" content="Al Rafi — CSE student and software engineer. Apps, AI, and things that make people say 'wait, how?'">
+
+  <!-- Fonts from Google Fonts.
+       Mochiy Pop One  = big cute anime headings
+       Kosugi Maru     = body text
+       JetBrains Mono  = small "code-style" labels
+       Bangers         = manga sound effects (BOOM!, ZAP!)
+       Caveat          = handwriting on the polaroid photos
+       To change fonts: pick new ones at fonts.google.com, replace this link,
+       then update the font names at the top of style.css (SECTION A).        -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Kosugi+Maru&family=JetBrains+Mono:wght@400;600&family=Bangers&family=Caveat:wght@600&display=swap">
+
+  <!-- Our own styles (colors, layout, animations) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       BACKGROUND EFFECTS (you normally don't need to touch these)
+       ═══════════════════════════════════════════════════════════════ -->
+  <div class="grain" aria-hidden="true"></div>                   <!-- film-grain texture over the whole page -->
+  <div class="spot" id="spot" aria-hidden="true"></div>          <!-- soft glow that follows the mouse -->
+  <div class="progress" id="progress" aria-hidden="true"></div>  <!-- red reading-progress bar at the very top -->
+  <canvas id="confetti" aria-hidden="true"></canvas>             <!-- confetti + petals get drawn here -->
+
+  <!-- Easter-egg overlay (appears when someone types r-a-f-i) -->
+  <div class="limit" id="limit" aria-hidden="true">
+    <div class="speed"></div>
+    <!-- ✏️ EDIT: the secret message text -->
+    <b>LIMIT BREAK!<br>限界突破</b>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 1 · NAVIGATION BAR
+       The menu fixed at the top: logo, section links, theme button.
+       ═══════════════════════════════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+
+      <!-- Logo (click = back to top; click 5× fast = easter egg on phones) -->
+      <!-- ✏️ EDIT: "AR" initials and the "al rafi" text -->
+      <button class="logo" id="logo" type="button" aria-label="Back to top">
+        <i>AR</i><span>Md. Abdullah - Al - Rafi</span>
+      </button>
+
+      <!-- Menu links. href="#about" jumps to the section with id="about". -->
+      <!-- ✏️ EDIT: link text. If you add a new section, add a link here too. -->
+      <nav class="links" aria-label="Sections">
+        <a href="#about" class="scr">About</a>
+        <a href="#projects" class="scr">Projects</a>
+        <a href="#skills" class="scr">Skills</a>
+        <a href="#journey" class="scr">Journey</a>
+        <a href="#contact" class="scr">Contact</a>
+      </nav>
+
+      <!-- Theme switcher button. The list of themes is built by script.js
+           (search "SKINS" in script.js to add/rename themes).            -->
+      <div class="nav-right">
+        <!-- Resume button: downloads your resume.pdf -->
+        <a class="nav-res" href="resume.pdf" download="Al-Rafi-Resume.pdf"><span class="full">Resume ↓</span><span class="short">CV ↓</span></a>
+
+        <div class="skin">
+          <button class="skin-btn" id="skinBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="skinMenu">
+            <i class="sw" aria-hidden="true"></i><span id="skinName">Crimson</span>
+          </button>
+          <div class="skin-menu" id="skinMenu" role="menu" hidden>
+            <small>CHOOSE A THEME</small>
+            <!-- theme buttons get added here automatically -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 · HERO
+         The first screen: speed lines, katakana, "AL RAFI" slam.
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="hero" id="top">
+
+      <!-- Spinning anime speed lines behind everything -->
+      <div class="speed" aria-hidden="true"></div>
+
+      <!-- ✏️ EDIT: big faded Japanese text behind the name (アル・ラフィ = "Al Rafi") -->
+      <div class="kata" aria-hidden="true">アル・ラフィ</div>
+
+      <!-- City skyline at the bottom. data-depth = how fast each layer moves
+           when you scroll (bigger number = moves more = feels closer).     -->
+      <div class="city" aria-hidden="true">
+        <div class="l1" data-depth=".25"></div>
+        <div class="l2" data-depth=".5"></div>
+        <div class="l3"></div>
+      </div>
+
+      <div class="hero-core">
+        <!-- ✏️ EDIT: the little red tag above the name -->
+        <span class="tag2"><span>EPISODE 01 · THE Origin</span></span>
+
+        <!-- ✏️ EDIT: your name (click it on the site to replay the slam) -->
+        <h1 class="slam" id="slam" title="Click me">AL RAFI</h1>
+
+        <!-- ✏️ EDIT: intro. Words inside <b>…</b> turn red. -->
+        <p class="sub" id="sub"><strong>Building ideas into intelligent solutions.</strong>
+          I learn by <b>BUILDING</b>, grow by <b>EXPERIMENTING</b>, and turn curiosity into <b>PROJECTS</b> that solve real problems.
+        </p>
+        <!-- Buttons. "fill" = solid red button, without it = outline button. -->
+        <div class="ctas">
+          <a href="#projects" class="btn fill scr">See my work →</a>
+          <a href="#contact" class="btn scr">Let's talk</a>
+        </div>
+      </div>
+
+      <!-- ✏️ EDIT: the manga sound effects that pop in -->
+      <span class="sfx s1" aria-hidden="true">ドン!</span>
+      <span class="sfx s2" aria-hidden="true">BOOM!</span>
+
+      <div class="scrolldn" aria-hidden="true">SCROLL<i></i></div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 · ABOUT — GACHA SUMMON
+         Left: your photo as a rare "SSR" character card.
+               Press "Summon" (or scroll to it) and the card shakes,
+               the screen flashes, and you get revealed.
+         Right: your bio.
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="about">
+
+      <!-- Soft morphing color glow in the background -->
+      <div class="blob" style="left:-10%;top:10%" aria-hidden="true"></div>
+
+      <div class="wrap about">
+
+        <!-- ─── GACHA CARD ──────────────────────────────────────────────
+             ✏️ YOUR PHOTO: put your photo in the same folder as index.html,
+                name it  me.jpg  (or change src="me.jpg" to your file name).
+                Until then you'll see a "YOUR PHOTO" placeholder.
+             ✏️ EDIT: rarity (SSR), the small line (DEVELOPER · CSE), your name.
+        ─────────────────────────────────────────────────────────────── -->
+        <div class="gacha rv" id="gacha">
+          <div class="g-rays" aria-hidden="true"></div>
+          <span class="g-banner">★ THE OG ★</span>
+
+          <div class="g-card">
+            <div class="g-in">
+              <!-- FRONT of the card (you) -->
+              <div class="g-face">
+                <div class="g-pic">
+                  <img src="me.jpg" alt="Photo of Al Rafi" onerror="this.remove()">
+                </div>
+                <span class="g-rar">SSR</span>
+                <span class="g-stars" aria-label="5 stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span>
+                <div class="g-name"><small>DEVELOPER · CSE</small>Al Rafi</div>
+              </div>
+              <!-- BACK of the card (shown while summoning) -->
+              <div class="g-face g-back" aria-hidden="true"><b>?</b></div>
+            </div>
+          </div>
+
+          <div class="g-flash" aria-hidden="true"></div>
+
+          <!-- ✏️ EDIT: button text -->
+          <button class="btn fill g-btn" type="button" id="summon">Summon ✦</button>
+        </div>
+
+        <!-- ─── BIO TEXT ──────────────────────────────────────────── -->
+        <div class="txt rv">
+          <span class="ep" data-type>EP.02 — THE OG CHARACTER</span>
+
+          <!-- ✏️ EDIT: heading -->
+          <h2 class="ttl" data-wave>You pulled the <b>OG</b>.</h2>
+
+          <p>
+            Congrats, you summoned <strong>Al Rafi</strong>: a Computer Science &amp;
+            graduate with the curious trait, a passion for
+            <strong>AI, software development, and data science</strong>, and a habit of turning
+            random ideas into real projects.
+          </p>
+
+          <p>
+            Still leveling up every day. Powered by
+            <strong>tea, coffee,  anime, and late-night debugging</strong>.
+          </p>
+
+          <p>
+            <strong>I love to Build Things</strong>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 · PROJECTS (manga panels)
+         ⭐ You DON'T add projects here anymore!
+            Your projects are a simple list in script.js → search "1e. PROJECTS".
+            The site turns that list into manga panels automatically,
+            no matter how many projects you have.
+         This section only holds the empty "containers" they go into.
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="projects">
+      <div class="wrap">
+
+        <div class="phead rv">
+          <div>
+            <span class="ep" data-type>EP.03 — PROJECTS</span>
+            <h2 class="ttl" data-wave>Things I've built.</h2>
+          </div>
+          <!-- ✏️ EDIT: short intro next to the heading -->
+          <p>Every panel is a project. Hover for the action, click to open it on GitHub.</p>
+        </div>
+
+        <!-- Filter tabs (All / Web / AI …) — built automatically from each project's "tags" -->
+        <div class="pfilter rv" id="pFilter" role="tablist" aria-label="Filter projects"></div>
+
+        <!-- The manga page. Panels are added here by script.js (Section 19). -->
+        <div class="manga rv" id="manga"></div>
+
+        <!-- "Next chapter" button — shows more projects. Hidden when all are shown. -->
+        <div class="pmore">
+          <button class="btn fill" type="button" id="pMore">Next chapter ↓</button>
+          <span class="mut mono" id="pCount"></span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 · SKILLS
+         Left: heading + 3 skill cards.  Right: spinning orbit.
+         ⚠️ The words floating in the ORBIT are set in script.js
+            (search "ORBIT SKILLS" in script.js).
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="skills">
+      <div class="blob" style="right:-12%;top:20%" aria-hidden="true"></div>
+
+      <div class="wrap skills">
+        <div class="rv">
+          <span class="ep" data-type>EP.04 — SKILLS</span>
+          <h2 class="ttl" data-wave>My power-ups.</h2>
+          <p class="mut" style="margin-top:14px;max-width:44ch">The orbit brings together my technical toolkit and the people skills I bring to projects. Hover to pause it.</p>
+
+          <!-- ✏️ EDIT: skill cards. class="ic" = the little icon text. -->
+          <div class="sk-list">
+            <div class="sk tilt"><span class="ic">&lt;/&gt;</span><div><b>Languages</b><span>Python, JavaScript, C, PHP</span></div></div>
+            <div class="sk tilt"><span class="ic">{ }</span><div><b>Web &amp; mobile</b><span>Django, Flutter, Laravel, React</span></div></div>
+            <div class="sk tilt"><span class="ic">∑</span><div><b>Data &amp; databases</b><span>PostgreSQL, MySQL</span></div></div>
+          </div>
+        </div>
+
+        <!-- The orbit. r2 = outer ring, r1 = inner ring. Filled in by script.js. -->
+        <div class="orbit rv" id="orbit">
+          <div class="ring r2"></div>
+          <div class="ring r1"></div>
+          <!-- ✏️ EDIT: text in the glowing center circle -->
+          <div class="core">AL<br>RAFI</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 · JOURNEY
+         Left: big year that stays on screen.  Right: list of milestones.
+         As you scroll, the big year changes to match the card in the middle.
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="journey">
+      <div class="wrap journey">
+
+        <div class="j-side">
+          <span class="ep" data-type>EP.05 — The JOURNEY</span>
+          <h2 class="ttl" data-wave>Story so far.</h2>
+          <!-- This box stays centered while the journey cards scroll past. -->
+          <div class="yr-box">
+            <!-- Starting year shown before scrolling (match your first card) -->
+            <div class="bigyr" id="bigyr">NOW</div>
+            <p class="mut">Scroll on. The year follows along.</p>
+          </div>
+        </div>
+
+        <!-- ─── MILESTONE CARDS (newest first) ─────────────────────────
+             ✏️ EDIT each <article>:
+               data-y="2025"  → the text shown BIG on the left (a year, or NOW)
+               <small>        → date + type
+               <h3>           → title
+               <p>            → description
+               class="chip"   → small tag at the bottom
+             To ADD a milestone: copy one <article>…</article> and paste it.
+             The first card has class="ji on" (highlighted at start).
+        ─────────────────────────────────────────────────────────────── -->
+        <div class="j-list" id="jList">
+
+          <article class="ji on" data-y="NOW">
+            <small>2026 — PRESENT · BUILDING</small>
+            <h3>Building my own projects</h3>
+            <p>Working on apps across web, mobile and AI, sharpening my skills, and preparing for a Master's degree.</p>
+            <span class="chip">Next quest: Master's</span>
+          </article>
+
+          <article class="ji" data-y="2026">
+            <small>2026 · EDUCATION</small>
+            <h3>Graduated: BSc in CSE</h3>
+            <p>Finished my Computer Science &amp; Engineering degree. <!-- ✏️ add your university name here if you like --></p>
+            <span class="chip">Graduate 🎓</span>
+          </article>
+
+          <article class="ji" data-y="2025">
+            <small>2025 · ENTREPRENEUR</small>
+            <h3>Started my own Cafe</h3>
+            <!-- ✏️ EDIT: one line about what the business does -->
+            <p>Took the leap and started something of my own while still studying, learning to plan, sell and manage on the go.</p>
+            <span class="chip">Founder</span>
+          </article>
+
+          <article class="ji" data-y="2023">
+            <small>2023 · TEACHING</small>
+            <h3>Teacher at a private coaching center</h3>
+            <!-- ✏️ EDIT: add the subjects or classes you teach -->
+            <p>Joined a local coaching center as a teacher, helping students prepare for their exams.</p>
+            <span class="chip">Teaching · Mentoring</span>
+          </article>
+
+          <article class="ji" data-y="2022">
+            <small>2022 · EDUCATION</small>
+            <h3>Started BSc in CSE</h3>
+            <p>Began my Computer Science &amp; Engineering degree and wrote my first real programs.</p>
+            <span class="chip">Day one</span>
+          </article>
+
+          <article class="ji" data-y="2018">
+            <small>2018 · WHERE IT STARTED</small>
+            <h3>Started teaching students locally</h3>
+            <p>Began tutoring students in my area, which is where I learned to explain hard things simply.</p>
+            <span class="chip">The origin story</span>
+          </article>
+
+          <!-- ─── SIDE QUESTS (special mentions) ───────────────────────
+               Experience that isn't tied to one year.
+               ✏️ EDIT the text, or copy one <div class="sq">…</div> to add more.
+          ──────────────────────────────────────────────────────────── -->
+          <div class="side-quests">
+            <span class="ep">SIDE QUESTS</span>
+            <div class="sq-grid">
+              <div class="sq">
+                <span class="sq-ic">🤝</span>
+                <b>Volunteering</b>
+                <!-- ✏️ EDIT: where / what you volunteered for -->
+                <p>Gave my time to community work and events.</p>
+              </div>
+              <div class="sq">
+                <span class="sq-ic">📋</span>
+                <b>Management</b>
+                <!-- ✏️ EDIT: teams, events or clubs you managed -->
+                <p>Organized people, plans and events, and kept things running.</p>
+              </div>
+              <div class="sq">
+                <span class="sq-ic">🎓</span>
+                <b>Teaching since 2018</b>
+                <p>Years of explaining tough ideas simply, one student at a time.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>  <!-- end of .j-list -->
+
+      </div>    <!-- end of .wrap.journey -->
+    </section>  <!-- end of SECTION 6 · JOURNEY -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6B · RESUME
+         A paper "resume" illustration + View and Download buttons.
+         ✏️ YOUR RESUME: put your PDF in the same folder as index.html
+            and name it  resume.pdf  (or change every "resume.pdf" below
+            AND the one in the nav bar to your file name).
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="resume" id="resume">
+      <div class="wrap res-grid">
+
+        <!-- Decorative paper (not your real resume — just a preview look) -->
+        <a class="res-paper rv" href="resume.pdf" download="Al-Rafi-Resume.pdf" aria-label="Download my resume (PDF)">
+          <span class="rp-sheet rp-back" aria-hidden="true"></span>
+          <span class="rp-sheet rp-front">
+            <span class="rp-head">
+              <span class="rp-photo"><img src="me.png" alt="" onerror="this.remove()"></span>
+              <span><b>Al Rafi</b><small>CSE Graduate · Developer</small></span>
+            </span>
+            <span class="rp-line w90"></span><span class="rp-line w70"></span>
+            <span class="rp-label">EXPERIENCE</span>
+            <span class="rp-line w80"></span><span class="rp-line w60"></span><span class="rp-line w75"></span>
+            <span class="rp-label">PROJECTS</span>
+            <span class="rp-line w85"></span><span class="rp-line w50"></span>
+            <span class="rp-label">SKILLS</span>
+            <span class="rp-chips"><i></i><i></i><i></i><i></i></span>
+            <span class="rp-stamp">PDF</span>
+          </span>
+        </a>
+
+        <div class="res-txt rv">
+          <span class="ep" data-type>BONUS EP — RESUME</span>
+
+          <!-- ✏️ EDIT: heading and line -->
+          <h2 class="ttl" data-wave>The full scroll.</h2>
+          <p class="mut">Everything in one page: education, teaching, business, projects and skills. Download a copy and keep it handy.</p>
+
+          <div class="res-btns">
+            <!-- Download = saves the PDF. ✏️ EDIT the file name people get after download="…" -->
+            <a class="btn fill" href="resume.pdf" download="Al-Rafi-Resume.pdf">Download resume ↓</a>
+          </div>
+
+          <!-- ✏️ EDIT: when you last updated it -->
+          <small class="res-meta">PDF · last updated October 2026</small>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 7 · CONTACT
+         Huge headline, magnetic round button, email copy, social links.
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="contact" id="contact">
+      <div class="speed" aria-hidden="true"></div>
+      <div class="blob" style="left:30%;top:20%" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <span class="ep" data-type>EP.06 — CONTACT</span>
+
+        <!-- ✏️ EDIT: headline. Text in <em>…</em> turns red. -->
+        <div class="huge rv" data-wave>Let's build<br><em>something.</em></div>
+
+        <!-- Magnetic button: follows the mouse; click = copies email + confetti -->
+        <button class="mag" id="mag" type="button">Say hello ✦</button>
+
+        <!-- ✏️ EDIT: your email address (the Copy button copies whatever is here) -->
+        <div>
+          <div class="mailrow">
+            <code id="mail">abdullah.al.rafi1420@gmail.com</code>
+            <button class="btn fill" type="button" id="copy">Copy</button>
+          </div>
+        </div>
+
+        <!-- ✏️ EDIT: put your real profile links in href="…"
+             data-scramble = the text does a "hacker scramble" on hover -->
+        <div class="socials">
+          <a href="https://github.com/BrokenCoder-69" target="_blank" rel="noopener" data-scramble>GitHub</a>
+          <a href="https://www.linkedin.com/in/al-rafi-14-206broken" target="_blank" rel="noopener" data-scramble>LinkedIn</a>
+          <a href="https://facebook.com/al.rafi.682067" target="_blank" rel="noopener" data-scramble>Facebook</a>
+          <a href="https://instagram.com/chand_lerdie" target="_blank" rel="noopener" data-scramble>Instagram</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 8 · FOOTER
+       ═══════════════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="wrap">
+      <!-- ✏️ EDIT: footer text (the 2nd line hints at the easter egg) -->
+      <span>© 2026 Al Rafi · Made with code and too much tea</span>
+      <span>psst… try typing r-a-f-i</span>
+    </div>
+  </footer>
+
+  <!-- Little pop-up message ("Email copied!") -->
+  <div class="toast" id="toast" role="status"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCRIPTS (keep at the bottom)
+       1) Lenis = makes scrolling smooth/buttery (from the internet)
+       2) script.js = all our animations
+       ═══════════════════════════════════════════════════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
