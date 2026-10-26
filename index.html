@@ -1,35 +1,5 @@
 <!doctype html>
-<!--
-╔══════════════════════════════════════════════════════════════════════╗
-║                    AL RAFI — PORTFOLIO  (index.html)                 ║
-╠══════════════════════════════════════════════════════════════════════╣
-║  This file holds all the TEXT and STRUCTURE of the website.          ║
-║                                                                      ║
-║  📁 The 3 files work together:                                       ║
-║     index.html  →  what's on the page (text, links, images)          ║
-║     style.css   →  how it looks (colors, fonts, sizes, layout)       ║
-║     script.js   →  how it moves (animations, theme switcher, etc.)   ║
-║                                                                      ║
-║  🔎 HOW TO FIND THINGS                                               ║
-║     Search (Ctrl+F / Cmd+F) for these section names:                 ║
-║       SECTION 0 · PAGE SETUP      (title, fonts)                     ║
-║       SECTION 1 · NAVIGATION BAR  (top menu + theme button)          ║
-║       SECTION 2 · HERO            (big "AL RAFI" intro)              ║
-║       SECTION 3 · ABOUT           (gacha summon card + bio)          ║
-║       SECTION 4 · PROJECTS        (manga panels)                     ║
-║       SECTION 5 · SKILLS          (orbit)                            ║
-║       SECTION 6 · JOURNEY         (timeline with big year)           ║
-║       SECTION 6B · RESUME         (view / download your PDF)         ║
-║       SECTION 7 · CONTACT         (email + social links)             ║
-║       SECTION 8 · FOOTER                                             ║
-║                                                                      ║
-║  ✏️  Look for "✏️ EDIT" comments — those mark the spots you'll       ║
-║     most likely want to change.                                      ║
-║                                                                      ║
-║  ▶️  To view: just double-click index.html to open it in a browser.  ║
-║     Keep all 3 files in the SAME folder.                             ║
-╚══════════════════════════════════════════════════════════════════════╝
--->
+
 <html lang="en">
 <head>
   <!-- ═══════════════════════════════════════════════════════════════
@@ -39,10 +9,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <!-- ✏️ EDIT: the text shown on the browser tab -->
   <title>Al Rafi — Software Engineer</title>
 
-  <!-- ✏️ EDIT: the short description Google / link previews show -->
   <meta name="description" content="Al Rafi — CSE student and software engineer. Apps, AI, and things that make people say 'wait, how?'">
 
   <!-- Fonts from Google Fonts.
@@ -87,13 +55,11 @@
     <div class="wrap">
 
       <!-- Logo (click = back to top; click 5× fast = easter egg on phones) -->
-      <!-- ✏️ EDIT: "AR" initials and the "al rafi" text -->
       <button class="logo" id="logo" type="button" aria-label="Back to top">
         <i>AR</i><span>Md. Abdullah - Al - Rafi</span>
       </button>
 
       <!-- Menu links. href="#about" jumps to the section with id="about". -->
-      <!-- ✏️ EDIT: link text. If you add a new section, add a link here too. -->
       <nav class="links" aria-label="Sections">
         <a href="#about" class="scr">About</a>
         <a href="#projects" class="scr">Projects</a>
@@ -149,10 +115,8 @@
         <!-- ✏️ EDIT: the little red tag above the name -->
         <span class="tag2"><span>EPISODE 01 · THE Origin</span></span>
 
-        <!-- ✏️ EDIT: your name (click it on the site to replay the slam) -->
         <h1 class="slam" id="slam" title="Click me">AL RAFI</h1>
 
-        <!-- ✏️ EDIT: intro. Words inside <b>…</b> turn red. -->
         <p class="sub" id="sub"><strong>Building ideas into intelligent solutions.</strong>
           I learn by <b>BUILDING</b>, grow by <b>EXPERIMENTING</b>, and turn curiosity into <b>PROJECTS</b> that solve real problems.
         </p>
@@ -173,10 +137,6 @@
 
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 3 · ABOUT — GACHA SUMMON
-         Left: your photo as a rare "SSR" character card.
-               Press "Summon" (or scroll to it) and the card shakes,
-               the screen flashes, and you get revealed.
-         Right: your bio.
          ═══════════════════════════════════════════════════════════════ -->
     <section id="about">
 
@@ -186,10 +146,6 @@
       <div class="wrap about">
 
         <!-- ─── GACHA CARD ──────────────────────────────────────────────
-             ✏️ YOUR PHOTO: put your photo in the same folder as index.html,
-                name it  me.jpg  (or change src="me.jpg" to your file name).
-                Until then you'll see a "YOUR PHOTO" placeholder.
-             ✏️ EDIT: rarity (SSR), the small line (DEVELOPER · CSE), your name.
         ─────────────────────────────────────────────────────────────── -->
         <div class="gacha rv" id="gacha">
           <div class="g-rays" aria-hidden="true"></div>
@@ -213,7 +169,7 @@
 
           <div class="g-flash" aria-hidden="true"></div>
 
-          <!-- ✏️ EDIT: button text -->
+          <!-- button text -->
           <button class="btn fill g-btn" type="button" id="summon">Summon ✦</button>
         </div>
 
@@ -221,7 +177,7 @@
         <div class="txt rv">
           <span class="ep" data-type>EP.02 — THE OG CHARACTER</span>
 
-          <!-- ✏️ EDIT: heading -->
+          <!-- heading -->
           <h2 class="ttl" data-wave>You pulled the <b>OG</b>.</h2>
 
           <p>
@@ -247,10 +203,6 @@
 
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 4 · PROJECTS (manga panels)
-         ⭐ You DON'T add projects here anymore!
-            Your projects are a simple list in script.js → search "1e. PROJECTS".
-            The site turns that list into manga panels automatically,
-            no matter how many projects you have.
          This section only holds the empty "containers" they go into.
          ═══════════════════════════════════════════════════════════════ -->
     <section id="projects">
@@ -261,7 +213,7 @@
             <span class="ep" data-type>EP.03 — PROJECTS</span>
             <h2 class="ttl" data-wave>Things I've built.</h2>
           </div>
-          <!-- ✏️ EDIT: short intro next to the heading -->
+          <!-- short intro next to the heading -->
           <p>Every panel is a project. Hover for the action, click to open it on GitHub.</p>
         </div>
 
@@ -318,7 +270,7 @@
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 6 · JOURNEY
          Left: big year that stays on screen.  Right: list of milestones.
-         As you scroll, the big year changes to match the card in the middle.
+         As scroll, the big year changes to match the card in the middle.
          ═══════════════════════════════════════════════════════════════ -->
     <section id="journey">
       <div class="wrap journey">
@@ -426,9 +378,6 @@
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 6B · RESUME
          A paper "resume" illustration + View and Download buttons.
-         ✏️ YOUR RESUME: put your PDF in the same folder as index.html
-            and name it  resume.pdf  (or change every "resume.pdf" below
-            AND the one in the nav bar to your file name).
          ═══════════════════════════════════════════════════════════════ -->
     <section class="resume" id="resume">
       <div class="wrap res-grid">
@@ -496,9 +445,7 @@
             <button class="btn fill" type="button" id="copy">Copy</button>
           </div>
         </div>
-
-        <!-- ✏️ EDIT: put your real profile links in href="…"
-             data-scramble = the text does a "hacker scramble" on hover -->
+->
         <div class="socials">
           <a href="https://github.com/BrokenCoder-69" target="_blank" rel="noopener" data-scramble>GitHub</a>
           <a href="https://www.linkedin.com/in/al-rafi-14-206broken" target="_blank" rel="noopener" data-scramble>LinkedIn</a>
@@ -516,8 +463,7 @@
        ═══════════════════════════════════════════════════════════════ -->
   <footer>
     <div class="wrap">
-      <!-- ✏️ EDIT: footer text (the 2nd line hints at the easter egg) -->
-      <span>© 2026 Al Rafi · Made with code and too much tea</span>
+      <span>© 2026 Al Rafi · Made with code and too much coffee</span>
       <span>psst… try typing r-a-f-i</span>
     </div>
   </footer>
