@@ -53,8 +53,7 @@ const SKINS = [
 
 /* ── 1b. ORBIT SKILLS (the words floating around the circle in Skills) ── */
 const ORBIT_INNER = ['Python', 'JavaScript', 'C', 'PHP', 'React'];
-const ORBIT_OUTER = ['Django', 'Flutter', 'Laravel', 'PostgreSQL', 'MySQL', 'Communication', 'Teamwork', 'Time Management', 'Leadership', 'Problem Solving'];
-
+const ORBIT_OUTER = ['Django', 'Flutter', 'Laravel', 'PostgreSQL', 'MySQL', 'Canva', 'Filmora', 'Communication', 'Teamwork', 'Time Management', 'Leadership', 'Problem Solving'];
 /* ── 1c. EASTER EGG ──
    Typing this word anywhere on the page triggers the "LIMIT BREAK" surprise.
    (The classic Konami code ↑↑↓↓←→←→BA also works.)                        */
